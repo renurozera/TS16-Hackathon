@@ -1,0 +1,23 @@
+{
+  "name": "crusaders",
+  "version": "1.0.0",
+  "description": "Your personal traveller assistant.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Varun surbhi Renu Chhavi",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renurozera/TS16-Hackathon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/renurozera/TS16-Hackathon/issues"
+  },
+  "homepage": "https://github.com/renurozera/TS16-Hackathon#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "fs": "0.0.2"
+  }
+}
