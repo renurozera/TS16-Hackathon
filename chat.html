@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Crusaders Chat</title>
+    	<link rel="stylesheet" href="css/chat.css" />
+    	<link rel="stylesheet" href="css/bootstrap.css" />
+    	<script src="js/socket.io.js"></script>
+    </head>
+    <body>
+        <div id="chat">
+            <div id="upper">
+                <h2>Chat here</h2>
+            </div>
+            <div id="leftBar">
+                <h3>Online users</h3>
+                <div id="onlineUsers">
+                </div>
+            </div>
+            <div id="receivedMessages">
+                <h3>Messages</h3>
+                <div id="messages">
+                </div>
+            </div>
+            <div id="lower">
+                <div class="container">
+                    <div class="form-group" style="margin-top: 2%;">
+                        <input type="text" class="form-control" required id="receiverID" placeholder="enter receiver's id">
+                        <textarea class="form-control" rows="3" required id="chatMessage" placeholder="Type something"></textarea>
+                        <button type="button" id="sendButton" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chat.js"></script>
+    </body>
+</html>

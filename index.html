@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Crusaders</title>
+    	<link rel="stylesheet" href="css/main.css" />
+    	<link rel="stylesheet" href="css/bootstrap.css" />
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <meta name="google-signin-client_id" content="32976942299-q5tg94d2rfg0mc42odgcl3pigm2l7j69.apps.googleusercontent.com">
+        <script>
+            var person = {
+                "name" : "",
+                "imageUrl" : "",
+                "id" : "",
+                "email" : ""
+            };
+            function userSignedIn() {
+                $(".loginOrRegister h3").text("Hi " + person.name);
+                $("#signIn").css("display", 'none');
+                $("#signOut").css('display', 'block');
+            }
+            function onSignIn(googleUser) {
+              var profile = googleUser.getBasicProfile();
+              person.name = profile.getName();
+              person.id = profile.getId();
+              person.imageUrl = profile.getImageUrl();
+              person.email = profile.getEmail();
+              console.log('ID: ' + person.id); // Do not send to your backend! Use an ID token instead.
+              console.log('Name: ' + person.name);
+              console.log('Image URL: ' + person.imageUrl);
+              console.log('Email: ' + person.email);
+              $.ajax({
+                  type: 'POST',
+                  url: 'localhost/crusaders/save.php',
+                  data: JSON.stringify(person), // or JSON.stringify ({name: 'jonas'}),
+                  success: function(data) {
+                      console.log("success");
+                  },
+                  contentType: "application/json",
+                  dataType: 'json'
+              });
+              userSignedIn();
+            }
+            function signOut() {
+                var auth2 = gapi.auth2.getAuthInstance();
+                auth2.signOut().then(function () {
+                  console.log('User signed out.');
+                });
+                /*person.name = "";
+                person.id = "";
+                person.imageUrl = "";
+                person.email = "";
+                $(".loginOrRegister h3").text("Login here");
+                $("#signIn").css("display", 'block');
+                $("#signOut").css('display', 'none');*/
+                location.reload();
+            } 
+
+        </script>
+    </head>
+    <body>
+        <div id="navigationDrawer">
+            <ul>
+                <li><a href="#">Hey</a></li>
+                <li><a href="#">Hey</a></li>
+                <li><a href="#">Hey</a></li>
+                <li><a href="#">Hey</a></li>
+            </ul>
+        </div>
+        <div id="navigationDrawerSupporter"></div>
+        <div id="header">
+            <div class="menu">
+                <div id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="logo">
+                <h2>Crusaders</h2>
+            </div>
+            <div class="loginOrRegister">
+                <h3 data-toggle="modal" data-target="#myModal">Login here</h3>
+            </div>
+            
+        </div>
+        <div id="headerAlias"></div>
+        <div id="main">
+            <div class="container">
+                <h2>Your Personal Travelling assistant</h2>
+                <div id="planTravel">
+                    <button type="button" id="planTravel" class="btn btn-primary btn-lg">Plan a travel</button>
+                    <button type="button" class="btn btn-primary btn-lg">Write blog</button>
+                </div>
+                <div id="bestPlaces">
+                    <h4>Based places to visit based on your preference</h4>
+                    <div class="places col-md-6">
+                    	<h4>Place1</h4>
+                    	<p>Description goes here</p>
+                    </div>
+                    <div class="places col-md-6">
+                    	<h4>Place1</h4>
+                    	<p>Description goes here</p>
+                    </div>
+                    <div class="places col-md-6">
+                    	<h4>Place1</h4>
+                    	<p>Description goes here</p>
+                    </div>
+                    <div class="places col-md-6">
+                    	<h4>Place1</h4>
+                    	<p>Description goes here</p>
+                    </div>
+                    <div class="places col-md-6">
+                    	<h4>Place1</h4>
+                    	<p>Description goes here</p>
+                    </div>
+                    <div class="places col-md-6">
+                    	<h4>Place1</h4>
+                    	<p>Description goes here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="footer">
+            <div id="follow">
+                <p>footer note</p>
+                <ul>
+                    
+                </ul>
+            </div>
+            <div id="info">
+                <p>info goes here</p>
+            </div>
+        </div>
+        <!--Login Modal-->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Please Login</h4>
+              </div>
+              <div class="modal-body">
+                <div class="g-signin2" id="signIn" data-onsuccess="onSignIn"></div>
+                <div id="signOut">
+                    <button type="button" onclick="signOut();" class="btn btn-primary btn-lg">Sign out</button>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
